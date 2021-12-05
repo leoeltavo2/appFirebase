@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8AD49C52275C549D000468BF /* MenuDesplegableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD49C51275C549D000468BF /* MenuDesplegableViewController.swift */; };
+		8AD49C62275C5C3B000468BF /* celdaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD49C60275C5C3B000468BF /* celdaConfig.swift */; };
+		8AD49C63275C5C3B000468BF /* celdaConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD49C61275C5C3B000468BF /* celdaConfig.xib */; };
 		8AE91F0D27551653002C90FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE91F0C27551653002C90FF /* AppDelegate.swift */; };
 		8AE91F0F27551653002C90FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE91F0E27551653002C90FF /* SceneDelegate.swift */; };
 		8AE91F1127551653002C90FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE91F1027551653002C90FF /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8AD49C51275C549D000468BF /* MenuDesplegableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDesplegableViewController.swift; sourceTree = "<group>"; };
+		8AD49C60275C5C3B000468BF /* celdaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celdaConfig.swift; sourceTree = "<group>"; };
+		8AD49C61275C5C3B000468BF /* celdaConfig.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = celdaConfig.xib; sourceTree = "<group>"; };
 		8AE91F0927551653002C90FF /* appFirebaseLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appFirebaseLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AE91F0C27551653002C90FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AE91F0E27551653002C90FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +85,9 @@
 				8AE91F212755198D002C90FF /* GoogleService-Info.plist */,
 				8AE91F3B27555EAE002C90FF /* RegistrarViewController.swift */,
 				8AE91F3E27556173002C90FF /* MenuViewController.swift */,
+				8AD49C51275C549D000468BF /* MenuDesplegableViewController.swift */,
+				8AD49C60275C5C3B000468BF /* celdaConfig.swift */,
+				8AD49C61275C5C3B000468BF /* celdaConfig.xib */,
 			);
 			path = appFirebaseLogin;
 			sourceTree = "<group>";
@@ -161,6 +170,7 @@
 			files = (
 				8AE91F1927551654002C90FF /* LaunchScreen.storyboard in Resources */,
 				8AE91F222755198D002C90FF /* GoogleService-Info.plist in Resources */,
+				8AD49C63275C5C3B000468BF /* celdaConfig.xib in Resources */,
 				8AE91F1627551654002C90FF /* Assets.xcassets in Resources */,
 				8AE91F1427551653002C90FF /* Main.storyboard in Resources */,
 			);
@@ -215,8 +225,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AD49C52275C549D000468BF /* MenuDesplegableViewController.swift in Sources */,
 				8AE91F1127551653002C90FF /* ViewController.swift in Sources */,
 				8AE91F3F27556173002C90FF /* MenuViewController.swift in Sources */,
+				8AD49C62275C5C3B000468BF /* celdaConfig.swift in Sources */,
 				8AE91F0D27551653002C90FF /* AppDelegate.swift in Sources */,
 				8AE91F3C27555EAE002C90FF /* RegistrarViewController.swift in Sources */,
 				8AE91F0F27551653002C90FF /* SceneDelegate.swift in Sources */,

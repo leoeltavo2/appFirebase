@@ -7,12 +7,19 @@
 
 import UIKit
 import Firebase
+import SideMenu
 
 class MenuViewController: UIViewController {
+    var menu: SideMenuNavigationController?
 
     @IBOutlet weak var lblVerCorreo: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //Menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        
         
         //eliminar boton de regresar
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -29,7 +36,11 @@ class MenuViewController: UIViewController {
         
     }
     
+    
+//    MARK: CERRAR SESION
     @IBAction func btnCerrarSesion(_ sender: UIBarButtonItem) {
+        
+        
         
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "email")
@@ -45,6 +56,5 @@ class MenuViewController: UIViewController {
        }
     }
     
-    
-
 }
+
