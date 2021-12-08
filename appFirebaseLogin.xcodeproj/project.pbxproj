@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A17EEF5276020C400179CC1 /* celdaPrincipalPersonalizada.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A17EEF3276020C400179CC1 /* celdaPrincipalPersonalizada.swift */; };
+		8A17EEF6276020C400179CC1 /* celdaPrincipalPersonalizada.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A17EEF4276020C400179CC1 /* celdaPrincipalPersonalizada.xib */; };
+		8A544F1C275E9B75007B4C2E /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A544F1B275E9B75007B4C2E /* MapaViewController.swift */; };
+		8A544F1F275ED6C2007B4C2E /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A544F1E275ED6C2007B4C2E /* PerfilViewController.swift */; };
 		8AD49C52275C549D000468BF /* MenuDesplegableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD49C51275C549D000468BF /* MenuDesplegableViewController.swift */; };
 		8AD49C62275C5C3B000468BF /* celdaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD49C60275C5C3B000468BF /* celdaConfig.swift */; };
 		8AD49C63275C5C3B000468BF /* celdaConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AD49C61275C5C3B000468BF /* celdaConfig.xib */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A17EEF3276020C400179CC1 /* celdaPrincipalPersonalizada.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celdaPrincipalPersonalizada.swift; sourceTree = "<group>"; };
+		8A17EEF4276020C400179CC1 /* celdaPrincipalPersonalizada.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = celdaPrincipalPersonalizada.xib; sourceTree = "<group>"; };
+		8A544F1B275E9B75007B4C2E /* MapaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
+		8A544F1E275ED6C2007B4C2E /* PerfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		8AD49C51275C549D000468BF /* MenuDesplegableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDesplegableViewController.swift; sourceTree = "<group>"; };
 		8AD49C60275C5C3B000468BF /* celdaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celdaConfig.swift; sourceTree = "<group>"; };
 		8AD49C61275C5C3B000468BF /* celdaConfig.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = celdaConfig.xib; sourceTree = "<group>"; };
@@ -88,6 +96,10 @@
 				8AD49C51275C549D000468BF /* MenuDesplegableViewController.swift */,
 				8AD49C60275C5C3B000468BF /* celdaConfig.swift */,
 				8AD49C61275C5C3B000468BF /* celdaConfig.xib */,
+				8A544F1B275E9B75007B4C2E /* MapaViewController.swift */,
+				8A544F1E275ED6C2007B4C2E /* PerfilViewController.swift */,
+				8A17EEF3276020C400179CC1 /* celdaPrincipalPersonalizada.swift */,
+				8A17EEF4276020C400179CC1 /* celdaPrincipalPersonalizada.xib */,
 			);
 			path = appFirebaseLogin;
 			sourceTree = "<group>";
@@ -168,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A17EEF6276020C400179CC1 /* celdaPrincipalPersonalizada.xib in Resources */,
 				8AE91F1927551654002C90FF /* LaunchScreen.storyboard in Resources */,
 				8AE91F222755198D002C90FF /* GoogleService-Info.plist in Resources */,
 				8AD49C63275C5C3B000468BF /* celdaConfig.xib in Resources */,
@@ -226,11 +239,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AD49C52275C549D000468BF /* MenuDesplegableViewController.swift in Sources */,
+				8A544F1C275E9B75007B4C2E /* MapaViewController.swift in Sources */,
 				8AE91F1127551653002C90FF /* ViewController.swift in Sources */,
+				8A544F1F275ED6C2007B4C2E /* PerfilViewController.swift in Sources */,
 				8AE91F3F27556173002C90FF /* MenuViewController.swift in Sources */,
 				8AD49C62275C5C3B000468BF /* celdaConfig.swift in Sources */,
 				8AE91F0D27551653002C90FF /* AppDelegate.swift in Sources */,
 				8AE91F3C27555EAE002C90FF /* RegistrarViewController.swift in Sources */,
+				8A17EEF5276020C400179CC1 /* celdaPrincipalPersonalizada.swift in Sources */,
 				8AE91F0F27551653002C90FF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

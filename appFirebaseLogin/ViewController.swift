@@ -44,6 +44,8 @@ class ViewController: UIViewController {
                     self.mensajeAlerta(msg: "Error: \(e.localizedDescription)")
                     
                 }else{
+                    self.lblCorreoL.text = ""
+                    self.lblPassL.text = ""
                     self.performSegue(withIdentifier: "iniciarSesion", sender: self)
                 }
                 
