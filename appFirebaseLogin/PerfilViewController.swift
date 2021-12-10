@@ -123,16 +123,19 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             if let document = documentSnapshot, error == nil{
                 if let usuario = document.get("usuario") as? String{
                     self.tfGetUsuario.text = usuario
+                    
+                    //obtener imagen usuario
+                    let storage = Storage.storage()
+                    let storageRef = storage.reference()
+                    if storageRef.name == "\(userEmail!)"{
+                        let ref = storageRef.child("\(userEmail!)")
+                        self.imagenPerfil.sd_setImage(with: ref)                        
+                    }else{
+                        self.imagenPerfil.image = UIImage(systemName: "person")
+                    }
                 }
             }
         }
-        
-        //obtener imagen usuario
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        
-        let ref = storageRef.child("\(userEmail!)")
-        imagenPerfil.sd_setImage(with: ref)
     }
     
     //funcion guardar informacion

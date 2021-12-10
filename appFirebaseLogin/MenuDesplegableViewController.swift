@@ -43,16 +43,20 @@ class MenuDesplegableViewController: UIViewController {
             if let document = documentSnapshot, error == nil{
                 if let usuario = document.get("usuario") as? String{
                     self.lblPerfilUsuario.text = usuario
+                    //obtener imagen usuario
+                    let storage = Storage.storage()
+                    let storageRef = storage.reference()
+                    if storageRef.name == "\(emailUser!)"{
+                        let ref = storageRef.child("\(emailUser!)")
+                        self.imgPerfilIcono.sd_setImage(with: ref)
+                    }else{
+                        self.imgPerfilIcono.image = UIImage(systemName: "person")
+                    }
+                   
                 }
             }
         }
-        
-        //obtener imagen usuario
-        let storage = Storage.storage()
-        let storageRef = storage.reference()
-        
-        let ref = storageRef.child("\(emailUser!)")
-        imgPerfilIcono.sd_setImage(with: ref)
+    
     }
     
 }
