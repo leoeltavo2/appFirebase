@@ -12,13 +12,13 @@ import MapKit
 class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
 
     //hacer uso del GPS
-    var manager = CLLocationManager();
-    
+    var manager = CLLocationManager()
     var lat: CLLocationDegrees!
     var long: CLLocationDegrees!
     
     @IBOutlet weak var barraBusqueda: UISearchBar!
     @IBOutlet weak var mapa: MKMapView!
+    @IBOutlet weak var selector: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +35,42 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         manager.startUpdatingLocation()
         
         //localizacion estatica de la tienda
+        donSazon()
+        
+    }
+    
+    //localizacion estatica
+    func donSazon(){
+        //localizacion estatica de la tienda
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: 19.699847866531833, longitude: -101.1895947381785)
             annotation.title = "DonSazon"
             annotation.subtitle = "Sucursal DonSazon"
             mapa.addAnnotation(annotation)
-        
+    }
+    
+    //boton cambiar de mapa
+    @IBAction func btnCambiarMapa(_ sender: UISegmentedControl) {
+        switch selector.selectedSegmentIndex {
+        case 0:
+            self.mapa.mapType = .standard
+        case 1:
+            self.mapa.mapType = .satellite
+        case 2:
+            self.mapa.mapType = .hybrid
+        default:
+            break
+        }
     }
 
+    @IBAction func btnUbicacion(_ sender: UIBarButtonItem) {
+        let localizacion = CLLocationCoordinate2DMake(self.lat, self.long)
+        //nivel de zoom que queramos
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion(center: localizacion, span: span)
+        self.mapa.setRegion(region, animated: true)
+        self.mapa.showsUserLocation = true
+    }
     
     //MARK: - obtener localizacion
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -53,15 +81,21 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         self.mapa.setRegion(region, animated: true)
         self.mapa.showsUserLocation = true
 
+        if let location = locations.first{
+                   self.lat = location.coordinate.latitude
+                   self.long = location.coordinate.longitude
+               }
     }
-    
     
     //MARK: - Trazar la ruta
     func trazarRuta(coordenadasDestino: CLLocationCoordinate2D){
-        guard let coordinadasOrigen = manager.location?.coordinate else {return}
+//        guard let coordinadasOrigen = manager.location?.coordinate else {return}
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 19.699847866531833, longitude: -101.1895947381785)
         
         //crear lugar de origen y destino
-        let lugarOrigenMark = MKPlacemark(coordinate: coordinadasOrigen)
+        let lugarOrigenMark = MKPlacemark(coordinate: annotation.coordinate)
         let lugarDestinoMark = MKPlacemark(coordinate: coordenadasDestino)
         
         //crear objeto mapkit Item
@@ -95,6 +129,9 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             self.mapa.setVisibleMapRect(ruta.polyline.boundingMapRect, animated: true)
         }
     }
+    
+    
+
     
     //MARK: - Mostrar ruta encima del mapa
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -139,15 +176,13 @@ extension MapaViewController: UISearchBarDelegate{
                     let span = MKCoordinateSpan(latitudeDelta: 0.08, longitudeDelta: 0.08)
                     let region = MKCoordinateRegion(center: anotacion.coordinate, span: span)
                     //borrar las rutas
-                    let overlays = self.mapa.overlays
-                    let annotations = self.mapa.annotations
-                    self.mapa.removeOverlays(overlays)
-                    self.mapa.removeAnnotations(annotations)
+                    self.mapa.removeOverlays(self.mapa.overlays)
+                    self.mapa.removeAnnotations(self.mapa.annotations)
                     
                     self.mapa.setRegion(region, animated: true)
                     self.mapa.addAnnotation(anotacion)
                     self.mapa.selectAnnotation(anotacion, animated: true)
-                    
+                    self.donSazon()
                     //mandar llamar trazar ruta
                     
                     self.trazarRuta(coordenadasDestino: destinoRuta.coordinate)
@@ -173,16 +208,3 @@ extension MapaViewController: UISearchBarDelegate{
 
 
 
-//boton cambiar de mapa
-//@IBAction func btnCambiarMapa(_ sender: UISegmentedControl) {
-//    switch selector.selectedSegmentIndex {
-//    case 0:
-//        self.mapa.mapType = .standard
-//    case 1:
-//        self.mapa.mapType = .satellite
-//    case 2:
-//        self.mapa.mapType = .hybrid
-//    default:
-//        break
-//    }
-//}

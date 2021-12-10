@@ -10,7 +10,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseStorageUI
 
-class PerfilViewController: UIViewController {
+class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     @IBOutlet weak var viewShadow: UIView!
     @IBOutlet weak var imagenPerfil: UIImageView!
@@ -23,10 +23,12 @@ class PerfilViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        obtenerInfo()
+        
         //propiedades de la imagen
         imagenPerfil.layer.cornerRadius = imagenPerfil.frame.size.width/2
         imagenPerfil.clipsToBounds = true
-        imagenPerfil.layer.borderWidth = 4
+        imagenPerfil.layer.borderWidth = 8
 
         //sombra en el view
         viewShadow.layer.shadowColor = UIColor.darkGray.cgColor
@@ -34,10 +36,57 @@ class PerfilViewController: UIViewController {
         viewShadow.layer.shadowOpacity = 0.5
         viewShadow.layer.shadowOffset = CGSize(width: 1, height: 0)
         
-        obtenerInfo()
+        //MARK: - agregar la opcion de tab a la imagen
+        let gesturaRecognized = UITapGestureRecognizer(target: self, action: #selector(clickImagen))
+        gesturaRecognized.numberOfTapsRequired = 1
+        gesturaRecognized.numberOfTouchesRequired = 1
+        imagenPerfil.addGestureRecognizer(gesturaRecognized)
+        imagenPerfil.isUserInteractionEnabled = true
         
         
     }
+    
+    //MARK: - metodo del clickImagen poniendo @objc por ser parte de ello
+    @objc func clickImagen(gestura: UITapGestureRecognizer){
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
+    }
+    
+    //MARK: - metodo seleccion de foto
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let userPickerImage = info[.editedImage] as? UIImage else {return}
+        imagenPerfil.image = userPickerImage
+        
+
+        
+        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL{
+            subirImagen(imgUrl: url)
+        }
+        
+        //ocultar picker
+        picker.dismiss(animated: true)
+    }
+    
+    //    MARK: SUBIR IMAGEN A FIREBASE
+        func subirImagen(imgUrl: URL){
+            let userID = Auth.auth().currentUser?.uid
+            let userEmail = Auth.auth().currentUser?.email
+            let storage = Storage.storage()
+            let data = Data()
+            let storageRef = storage.reference()
+            let localFile = imgUrl
+            let photoRef = storageRef.child("\(userEmail ?? "imagen")")
+            let uploadTask = photoRef.putFile(from: localFile, metadata: nil) { (metadata, error) in
+                guard let metadata = metadata else{
+                    print(error?.localizedDescription)
+                    return
+                }
+                print("se subio la foto")
+            }
+        }
     
     //Al darle click a cuaquier parte se oculta el teclado
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,27 +131,32 @@ class PerfilViewController: UIViewController {
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
-        let ref = storageRef.child("imagen")
+        let ref = storageRef.child("\(userEmail!)")
         imagenPerfil.sd_setImage(with: ref)
     }
     
     //funcion guardar informacion
     func guardarInfo(){
         let userEmail = Auth.auth().currentUser?.email
-//        let userID = Auth.auth().currentUser?.uid
         let user = Auth.auth().currentUser
-//        print("usuarioooooo: \(user?.email!)")
+        
         //llamar nombre usuario
-        if tfGetUsuario != nil && tfGetCorreo != nil{
+        if tfGetUsuario.text != ""{
             db.collection("users").document(userEmail!).updateData(["usuario": tfGetUsuario.text!, "email": tfGetCorreo.text!])
-            if tfGetCorreo.text != userEmail{
+            if tfGetCorreo.text != userEmail && tfGetUsuario.text != ""{
                 user?.updateEmail(to: tfGetCorreo.text!){error in
                     if let e = error{
-                        print(e)
+                        print(e.localizedDescription)
                     }
                     
                 }
             }
+        }else{
+            let alerta = UIAlertController(title: "ERROR", message: "completa el campo de usuario", preferredStyle: .alert)
+
+            alerta.addAction(UIAlertAction(title: "Aceptar", style: .destructive, handler: nil))
+         
+            self.present(alerta, animated: true, completion: nil)
         }
         
         

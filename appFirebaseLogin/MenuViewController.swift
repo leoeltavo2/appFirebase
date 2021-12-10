@@ -9,19 +9,24 @@ import UIKit
 import Firebase
 import SideMenu
 import FirebaseStorage
+import StoreKit
 
 class MenuViewController: UIViewController {
     var menu: SideMenuNavigationController?
+    
+    var modeles = [SKProduct]()
 
-    var titulo = ["banderillas", "taza cafe", "cake pope","taza capuccino","carne asada","churros","hamburguesa a la Parilla","pan","pancakes","papas Ucranianas","pasta","pasta Pesto","pastel","pastel deFruta","pizza","pizza Italiana","postre de Fresas","salmon", "sandia"]
-    var precio = ["$25.00 MXN","$12.00 MXN","$10.00 MXN","$18.00 MXN","$45.00 MXN","$8.00 MXN","$32.00 MXN","$5.00 MXN","$12.00 MXN","$25.00 MXN","$25.00 MXN","$30.00 MXN","$22.50 MXN","$100.00 MXN","$120.00 MXN","$15.00 MXN","$34.00 MXN","$54.00 MXN","$25.00 MXN"]
-    var descripcion = ["banderillas", "cafe", "cakepope","capuccino","carne","churros","hamburguesaParilla","pan","pancake","papasUcranianas","pasta","pastaPesto","pastel","pastelFruta","pizza","pizzaItaliana","postreFresas","salmon", "sandia"]
+    var titulo = ["banderillas", "taza cafe", "cake pope","taza capuccino","carne asada","churros","hamburguesa a la Parrilla","pan","pancakes","papas ucranianas","pasta","pasta Pesto","pastel","pastel de fruta","pizza","pizza Italiana","postre de Fresas","salmon", "sandia"]
+    var precio = ["$25.00 MXN","$12.00 MXN","$10.00 MXN","$18.00 MXN","$45.00 MXN","$8.00 MXN","$32.00 MXN","$5.00 MXN","$12.00 MXN","$25.00 MXN","$25.00 MXN","$30.00 MXN","$22.50 MXN","$20.00 MXN","$100.00 MXN","$150.00 MXN","$34.00 MXN","$54.00 MXN","$25.00 MXN"]
+    var descripcion = ["Banderillas de carne con pimientos.", "Taza de cafe con granos importados de francia.", "Cake popes.","Taza de nuestro mejor capuccino.","Carne sada artesanal.","Deliciosos churros hechos al momento.","Hamburguesa a la parilla. Las mejores del continente.","Pan calientito recien horneado.","Pancakes suavecitos.","Papas importadas desde ucraniana.","Pasta a lo italiano.","Pasta pesto de italia.","Pastel de moka.","Pastel de fruta.","Pizza con 1 ingrediente.","Pizza italiana.","Postre de fresas rojas recien cortadas.","Pieza de Salmon.", "Sandia dulce."]
     var imagenes = ["banderillas", "cafe", "cakepops","cappuccino","carne","churros","hamburgesaParrilla","pan","pancakes","papasUcranianas","pasta","pastaPesto","pastel","pastelFruta","pizza","pizzaItaliana","postreFresas","salmon", "sandia"]
     
     let db = Firestore.firestore()
+    let email = Auth.auth().currentUser?.email
     
     @IBOutlet weak var tablaProducto: UITableView!
     
+//    MARK: DIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +36,9 @@ class MenuViewController: UIViewController {
         
         //eliminar boton de regresar
         self.navigationItem.setHidesBackButton(true, animated: true)
+        
+        //payment
+        SKPaymentQueue.default().add(self)
         
         //mantener sesion
         if let email = Auth.auth().currentUser?.email{
@@ -45,9 +53,16 @@ class MenuViewController: UIViewController {
         tablaProducto.delegate = self
         tablaProducto.dataSource = self
         
+        buscarProducto()
+        //llamar gasto
+//        db.collection("users").document(email!).getDocument { (documentSnapshot, error) in
+//            if let document = documentSnapshot, error == nil{
+//                if let gasto = document.get("gasto") as? Int{
+//                    self.lblGastado.text = "$\(gasto) MXN"
+//                }
+//            }
+//        }
         
-        
-     
     }
     
    
@@ -58,7 +73,7 @@ class MenuViewController: UIViewController {
     func cerrarSesion(){
             let alerta = UIAlertController(title: "SALIR", message: "¿Desea cerrar sesión?", preferredStyle: .alert)
         
-        let accionAceptar = UIAlertAction(title: "Aceptar", style: .default) { _ in
+            let accionAceptar = UIAlertAction(title: "Aceptar", style: .default) { _ in
             
             let defaults = UserDefaults.standard
             defaults.removeObject(forKey: "email")
@@ -87,15 +102,21 @@ class MenuViewController: UIViewController {
     }
     
     
-       
-     
-      
+//    MARK: funcion obtener productos
+
+    func buscarProducto(){
+        let request = SKProductsRequest(productIdentifiers: Set(titulo))
+        request.delegate = self
+        request.start()
+    }
+    
     
 }
 
 
 //MARK: extension table view
-extension MenuViewController: UITableViewDelegate, UITableViewDataSource{
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource, SKProductsRequestDelegate, SKPaymentTransactionObserver{
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titulo.count
@@ -120,6 +141,39 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource{
         return celda
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tablaProducto.deselectRow(at: indexPath, animated: true)
+        //mostar compra
+        let payment = SKPayment(product: modeles[indexPath.row])
+        SKPaymentQueue.default().add(payment)
+    }
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        DispatchQueue.main.async {
+            self.modeles = response.products
+            self.tablaProducto.reloadData()
+        }
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        //
+        transactions.forEach({
+            switch $0.transactionState{
+            case .purchasing:
+                print("comprando")
+            case .purchased:
+                print("comprado")
+                
+                SKPaymentQueue.default().finishTransaction($0)
+            case .failed:
+                print("no se compro")
+                SKPaymentQueue.default().finishTransaction($0)
+            case .restored: break
+            case .deferred: break
+            @unknown default: break
+            }
+        })
+    }
     
 }
 

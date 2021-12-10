@@ -31,6 +31,7 @@
 		8A17EEF4276020C400179CC1 /* celdaPrincipalPersonalizada.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = celdaPrincipalPersonalizada.xib; sourceTree = "<group>"; };
 		8A544F1B275E9B75007B4C2E /* MapaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		8A544F1E275ED6C2007B4C2E /* PerfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
+		8AA96CAC2762B23E00365325 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		8AD49C51275C549D000468BF /* MenuDesplegableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDesplegableViewController.swift; sourceTree = "<group>"; };
 		8AD49C60275C5C3B000468BF /* celdaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = celdaConfig.swift; sourceTree = "<group>"; };
 		8AD49C61275C5C3B000468BF /* celdaConfig.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = celdaConfig.xib; sourceTree = "<group>"; };
@@ -100,6 +101,7 @@
 				8A544F1E275ED6C2007B4C2E /* PerfilViewController.swift */,
 				8A17EEF3276020C400179CC1 /* celdaPrincipalPersonalizada.swift */,
 				8A17EEF4276020C400179CC1 /* celdaPrincipalPersonalizada.xib */,
+				8AA96CAC2762B23E00365325 /* Configuration.storekit */,
 			);
 			path = appFirebaseLogin;
 			sourceTree = "<group>";

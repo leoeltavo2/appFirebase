@@ -23,6 +23,7 @@ class MenuDesplegableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imgPerfilIcono.image = UIImage(systemName: "person")
 
         tablaConfig.register(UINib(nibName: "celdaConfig", bundle: nil), forCellReuseIdentifier: "celda")
         
@@ -36,9 +37,9 @@ class MenuDesplegableViewController: UIViewController {
         imgPerfilIcono.layer.borderWidth = 1
         
         //llamar nombre usuario
-        let email = Auth.auth().currentUser?.email
+        let emailUser = Auth.auth().currentUser?.email
         
-        db.collection("users").document(email!).getDocument { (documentSnapshot, error) in
+        db.collection("users").document(emailUser!).getDocument { (documentSnapshot, error) in
             if let document = documentSnapshot, error == nil{
                 if let usuario = document.get("usuario") as? String{
                     self.lblPerfilUsuario.text = usuario
@@ -50,7 +51,7 @@ class MenuDesplegableViewController: UIViewController {
         let storage = Storage.storage()
         let storageRef = storage.reference()
         
-        let ref = storageRef.child("imagen")
+        let ref = storageRef.child("\(emailUser!)")
         imgPerfilIcono.sd_setImage(with: ref)
     }
     

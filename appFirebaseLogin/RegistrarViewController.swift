@@ -24,68 +24,15 @@ class RegistrarViewController: UIViewController, UIImagePickerControllerDelegate
         //cambiar teclado en capo email
         lblCorreoR.keyboardType = .emailAddress
         
-        //propiedades de la imagen
-        imagenPerfil.layer.cornerRadius = imagenPerfil.frame.size.width/2
-        imagenPerfil.clipsToBounds = true
-        imagenPerfil.layer.borderWidth = 8
-        
         //sombra en el view
         viewShadow.layer.shadowColor = UIColor.darkGray.cgColor
         viewShadow.layer.shadowRadius = 20
         viewShadow.layer.shadowOpacity = 0.5
         viewShadow.layer.shadowOffset = CGSize(width: 1, height: 0)
         
-        //MARK: - agregar la opcion de tab a la imagen
-        let gesturaRecognized = UITapGestureRecognizer(target: self, action: #selector(clickImagen))
-        gesturaRecognized.numberOfTapsRequired = 1
-        gesturaRecognized.numberOfTouchesRequired = 1
-        imagenPerfil.addGestureRecognizer(gesturaRecognized)
-        imagenPerfil.isUserInteractionEnabled = true
     }
     
-    //MARK: - metodo del clickImagen poniendo @objc por ser parte de ello
-    @objc func clickImagen(gestura: UITapGestureRecognizer){
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        vc.allowsEditing = true
-        present(vc, animated: true, completion: nil)
-    }
     
-    //MARK: - metodo seleccion de foto
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let userPickerImage = info[.editedImage] as? UIImage else {return}
-        imagenPerfil.image = userPickerImage
-        
-//        guard let fileUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL else { return }
-//            print(fileUrl.lastPathComponent)
-
-        
-        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL{
-            subirImagen(imgUrl: url)
-        }
-        
-        //ocultar picker
-        picker.dismiss(animated: true)
-    }
-    
-//    MARK: SUBIR IMAGEN A FIREBASE
-    func subirImagen(imgUrl: URL){
-        let userID = Auth.auth().currentUser?.uid
-        let storage = Storage.storage()
-        let data = Data()
-        let storageRef = storage.reference()
-        let localFile = imgUrl
-        let photoRef = storageRef.child("\(userID)")
-        
-        let uploadTask = photoRef.putFile(from: localFile, metadata: nil) { (metadata, error) in
-            guard let metadata = metadata else{
-                print(error?.localizedDescription)
-                return
-            }
-            print("se subio la foto")
-        }
-    }
 
     //Al darle click a cuaquier parte se oculta el teclado
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

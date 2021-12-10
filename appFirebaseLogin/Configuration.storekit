@@ -1,0 +1,299 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "25",
+      "familyShareable" : false,
+      "internalID" : "822FF9CF",
+      "localizations" : [
+        {
+          "description" : "Banderillas con pimientos y carne",
+          "displayName" : "Banderillas",
+          "locale" : "es_MX"
+        }
+      ],
+      "productID" : "banderillas",
+      "referenceName" : "Banderillas",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "12",
+      "familyShareable" : false,
+      "internalID" : "597DCFC5",
+      "localizations" : [
+        {
+          "description" : "Disfruta de nuestro inigualable cafe",
+          "displayName" : "Taza de cafe",
+          "locale" : "es_MX"
+        }
+      ],
+      "productID" : "taza cafe",
+      "referenceName" : "Taza de cafe",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "10",
+      "familyShareable" : false,
+      "internalID" : "B5A2E22B",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Cake Pope",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "cake pope",
+      "referenceName" : "cake pope",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "18",
+      "familyShareable" : false,
+      "internalID" : "593C08E9",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Taza de capuccino",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "taza capuccino",
+      "referenceName" : "Taza de capuccino",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "45",
+      "familyShareable" : false,
+      "internalID" : "2BA08470",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Carne asada",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "carne asada",
+      "referenceName" : "carne asada",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "8",
+      "familyShareable" : false,
+      "internalID" : "A5CDD1B4",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Churros",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "churros",
+      "referenceName" : "churros",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "32",
+      "familyShareable" : false,
+      "internalID" : "A6A97AEF",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Hamburguesa a la parrilla",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "hamburguesa a la Parrilla",
+      "referenceName" : "hamburguesa",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "5",
+      "familyShareable" : false,
+      "internalID" : "2B085E37",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pan",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pan",
+      "referenceName" : "pan",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "12",
+      "familyShareable" : false,
+      "internalID" : "2B910ABC",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pancakes",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pancakes",
+      "referenceName" : "pancakes",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "25",
+      "familyShareable" : false,
+      "internalID" : "C63F9317",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Papas Ucranianas",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "papas ucranianas",
+      "referenceName" : "papas",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "25",
+      "familyShareable" : false,
+      "internalID" : "E6FE8230",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pasta",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pasta",
+      "referenceName" : "pasta",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "30",
+      "familyShareable" : false,
+      "internalID" : "5AD0B9C9",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pasta pesto",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pasta Pesto",
+      "referenceName" : "pasta pesto",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "22.5",
+      "familyShareable" : false,
+      "internalID" : "FCF4C2FE",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pastel",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pastel",
+      "referenceName" : "pastel",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "20",
+      "familyShareable" : false,
+      "internalID" : "F9882D22",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pastel de fruta",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pastel de fruta",
+      "referenceName" : "pastel fruta",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "100",
+      "familyShareable" : false,
+      "internalID" : "3919267B",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pizza normal",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pizza",
+      "referenceName" : "pizza",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "150",
+      "familyShareable" : false,
+      "internalID" : "68907E3A",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Pizza italiana",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pizza Italiana",
+      "referenceName" : "pizza italiana",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "34",
+      "familyShareable" : false,
+      "internalID" : "45E386CC",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Postres de fresas",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "postre de Fresas",
+      "referenceName" : "postre",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "54",
+      "familyShareable" : false,
+      "internalID" : "CC529301",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Salmon",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "salmon",
+      "referenceName" : "salmon",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "25",
+      "familyShareable" : false,
+      "internalID" : "27353E44",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "Sandia",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "sandia",
+      "referenceName" : "sandia",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}
